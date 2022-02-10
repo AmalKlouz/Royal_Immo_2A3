@@ -1,1 +1,3 @@
+elaborer la DCU global de l'application
+corriger les interfaces graphiques 
 
