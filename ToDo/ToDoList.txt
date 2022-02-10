@@ -1,3 +1,6 @@
 elaborer la DCU global de l'application
 corriger les interfaces graphiques 
+finaliser le cahier de charge
+préparer une présentation
+deposer la présentation et la cahier de charge
 
