@@ -1,1 +1,3 @@
+commencer l'élaboration des interfaces graphiques
+reflechir au scénario arduino
 
