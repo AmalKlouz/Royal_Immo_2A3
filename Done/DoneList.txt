@@ -1,8 +1,0 @@
-definir les modules
-discuter la répartition des taches en equipe
-elaborer la cahier de charge 
-suivre les etapes de la capsule 1
-inviter le tuteur
-installer qt
-corriger la cahier de charge 
-mettre a jour la liste des taches sur github
