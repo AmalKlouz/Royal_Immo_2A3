@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include"mapwindow.h"
 #include "bien.h"
 #include<QPdfWriter>
 #include <unistd.h>
@@ -12,7 +13,6 @@
 #include<QFileDialog>
 #include <QDateTime>
 #include<QTextDocument>
-
 #include <QTextEdit>
 
 #include <QtSql/QSqlQueryModel>
@@ -30,6 +30,7 @@
 #include <QMessageBox>
 
 #include<QUrl>
+#include<QQuickWidget>
 
 #include <QPixmap>
 
@@ -50,9 +51,16 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setWindowTitle("Gestion des biens");
     QPixmap pix("");
 
-
-
 }
+
+/*void MainWindow::on_mapbutton_clicked()
+{
+    mapwindow = new mapwindow(this);
+    mapwindow->show();
+
+}*/
+
+
 void MainWindow::afficherBD()
 {
     bien afe;
@@ -138,7 +146,7 @@ QString dateC=ui->dateEdit->text();
    // QString dateC=sysdate;
     int prix=ui->le_prix->text().toInt();
     QString DescriptionB=ui->le_Description->text();
-    QImage image = ui->imageLabel->pixmap()->toImage();
+   // QImage image = ui->imageLabel->pixmap()->toImage();
         bien b(id_imo,typeC,dateC,prix,DescriptionB);
         bool test=b.ajouter();
 
@@ -363,6 +371,7 @@ void MainWindow::on_imagebouton_clicked()
     QTableView *table;
                        table = ui->table_bien;
 
+
                        QString filters("CSV files (.csv);;All files (.*)");
                                      QString defaultFilter("CSV files (*.csv)");
                        QString fileName = QFileDialog::getSaveFileName(0, "Save file", QCoreApplication::applicationDirPath(),
@@ -399,4 +408,38 @@ void MainWindow::on_imagebouton_clicked()
 
 }
 
+void MainWindow::on_mapbutton_clicked()
+{
+    //mapwindow mapwindow1;
+   // mapwindow= new mapwindow1(this);
+    mapwindow1= new mapwindow(this);
+   // mapwindow1.setModal(true);
+   // mapwindow1.exec();
+    mapwindow1->show();
 
+}
+
+void MainWindow::on_recuperer_clicked()
+{
+
+        int row =ui->table_bien->selectionModel()->currentIndex().row();
+                   QString ID_IMO=ui->table_bien->model()->index(row,0).data().toString();
+                   QSqlQuery q("select * from BIEN where ID_IMO="+ID_IMO);
+
+
+                    while(q.next())
+                    {
+
+                        ui->le_id->setText(q.value(0).toString());
+                         //ui->comboBox->showPopup(q.value(2).toString());
+                      //  ui->dateEdit->setDate(q.value(2));
+
+                          ui->le_prix->setText(q.value(1).toString());
+                           ui->le_Description->setText(q.value(4).toString());
+                       //     ui->le_Description_2->setText(q.value(4).toString());
+                    }
+
+
+
+
+}

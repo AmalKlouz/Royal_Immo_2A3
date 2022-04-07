@@ -2,7 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "mapwindow.h"
 #include "bien.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -54,9 +56,15 @@ private slots:
 
     void on_excel_clicked();
 
+    void on_pushButton_5_clicked();
+
+    void on_mapbutton_clicked();
+
+    void on_recuperer_clicked();
+
 private:
     Ui::MainWindow *ui;
-
+    mapwindow *mapwindow1;
 
 
 

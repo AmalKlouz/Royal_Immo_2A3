@@ -6,7 +6,7 @@
 
 QT       += core gui sql printsupport
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets quickwidgets
 
 TARGET = Atelier_Connexion
 TEMPLATE = app
@@ -28,17 +28,23 @@ SOURCES += \
     bien.cpp \
         main.cpp \
     connection.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    mapwindow.cpp
 
 HEADERS += \
     bien.h \
     connection.h \
-    mainwindow.h
+    mainwindow.h \
+    mapwindow.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+        mapwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    qml.qrc
