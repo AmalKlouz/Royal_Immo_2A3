@@ -17,6 +17,7 @@
 #include <fstream>
 #include "vector"
 #include "qrcodegen.h"
+#include "arduino.h"
 
 using std::uint8_t;
 using qrcodegen::QrCode;
@@ -70,7 +71,7 @@ MainWindow::MainWindow(QWidget *parent)
          //set page to 1
          ui->stackedWidget->setCurrentIndex(1);
      });
-     connect(ui->mailing_Link, &QPushButton::clicked, this, [=]() {
+     connect(ui->arduino, &QPushButton::clicked, this, [=]() {
            //set page to 2
             ui->stackedWidget->setCurrentIndex(3);
         });
@@ -81,6 +82,20 @@ MainWindow::MainWindow(QWidget *parent)
      qry->exec ();
      modal->setQuery(*qry);
      ui->comboBox->setModel(modal);
+
+//     int ret=A.connect_arduino (); // lancer la connexion à arduino
+//     switch (ret){
+//     case (0):qDebug() << "arduino is available and connected to : " << A.getarduino_port_name();
+//         break;
+//     case(1):qDebug()<< "arduino is available but not connected to :" <<A.getarduino_port_name ();
+//        break;
+//     case (-1):qDebug() << "arduino is not available";
+//     }
+//      QObject::connect(A.getserial (),SIGNAL (readyRead ()), this,SLOT(update_label())); // permet de lancer
+//      //le slot update_label suite à la reception du signal readyRead (reception des données)
+
+//     data=A.read_from_arduino();
+//      ui->res_arduino->setText(data);
 
 
 
@@ -273,15 +288,7 @@ void MainWindow::on_Update_button_clicked()
 
 void MainWindow::on_comboBox_currentTextChanged(const QString &arg1)
 {
-    Equipement E;
-    if(ui->comboBox->currentText() == "0")
-            {
-                ui->tableView->setModel(E.afficher());
-            }
-            else
-            {
-                 ui->tableView->setModel(E.rechercher(ui->comboBox->currentText()));
-            }
+
 }
 
 void MainWindow::on_tri_id_clicked()
@@ -523,4 +530,14 @@ void MainWindow::on_Recherche_textChanged(const QString &arg1)
             {
                  ui->tableView->setModel(E.rechercher(ui->Recherche->text()));
             }
+}
+
+void MainWindow::update_label()
+{
+   data=A.read_from_arduino();
+   ui->res_arduino->setText(data);}
+
+void MainWindow::on_arduino_clicked()
+{
+//    update_label();
 }

@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 #include "equipement.h"
+#include "arduino.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -45,9 +46,16 @@ private slots:
     void on_QR_btn_clicked();
 
     void on_Recherche_textChanged(const QString &arg1);
+    void update_label();
+
+    void on_arduino_clicked();
 
 private:
     Ui::MainWindow *ui;
+    QByteArray data;
+//    QString d;
+    Arduino A;
     Equipement E,Etmp;
+
 };
 #endif // MAINWINDOW_H
