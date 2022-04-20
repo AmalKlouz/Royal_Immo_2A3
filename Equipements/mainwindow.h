@@ -39,7 +39,7 @@ private slots:
 
     void on_pdf_btn_clicked();
 
-    void on_send_mail_clicked();
+    void on_addBarcode_clicked();
 
     void on_id_comboBox_currentTextChanged(const QString &arg1);
 
@@ -53,7 +53,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QByteArray data;
-//    QString d;
+    QString d;
     Arduino A;
     Equipement E,Etmp;
 

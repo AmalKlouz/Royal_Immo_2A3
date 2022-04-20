@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QLabel" name="label">
@@ -619,9 +619,9 @@
      <widget class="QLabel" name="label_22">
       <property name="geometry">
        <rect>
-        <x>400</x>
+        <x>360</x>
         <y>40</y>
-        <width>191</width>
+        <width>241</width>
         <height>51</height>
        </rect>
       </property>
@@ -633,7 +633,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Arduino</string>
+       <string>Scanner Code A Barre</string>
       </property>
      </widget>
      <widget class="QWidget" name="horizontalLayoutWidget_8">
@@ -647,9 +647,9 @@
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_8">
        <item>
-        <widget class="QPushButton" name="send_mail">
+        <widget class="QPushButton" name="addBarcode">
          <property name="text">
-          <string>Envoyer</string>
+          <string>Ajouter</string>
          </property>
         </widget>
        </item>
@@ -665,15 +665,51 @@
      <widget class="QLabel" name="res_arduino">
       <property name="geometry">
        <rect>
-        <x>280</x>
-        <y>160</y>
-        <width>391</width>
+        <x>390</x>
+        <y>200</y>
+        <width>291</width>
         <height>191</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="text">
        <string/>
       </property>
+     </widget>
+     <widget class="QWidget" name="formLayoutWidget_9">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>120</y>
+        <width>351</width>
+        <height>52</height>
+       </rect>
+      </property>
+      <layout class="QFormLayout" name="formLayout_9">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_15">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Equipement ID:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QComboBox" name="eid"/>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>

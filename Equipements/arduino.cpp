@@ -60,11 +60,30 @@ int Arduino::close_arduino()
 
  QByteArray Arduino::read_from_arduino()
 {
+     QByteArray temp;
     if(serial->isReadable()){
-         data=serial->readAll();
+//         data=serial->readAll();
+        if(serial->waitForReadyRead(18)){
+                             data = serial->readAll();
+QByteArray dataArray(data.simplified());
+if(!dataArray.isNull()){
+//                            qDebug() << dataArray;
+                            temp = dataArray;
+//                            return dataArray;
 
-         return data;
+                            }
+return temp;
+
+                        }
+
+//         data =serial->readLine();
+//                  qDebug() << data;
+
+//            qDebug() << temp;
+
     }
+
+
  }
 
 

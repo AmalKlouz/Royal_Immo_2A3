@@ -28,6 +28,7 @@ public:
     bool supprimer(int);
     bool update(int,QString,QString,QString);
     QSqlQueryModel* rechercher(const QString &aux);
+    bool add_barcode(int,QString);
 };
 
 #endif // EQUIPEMENT_H

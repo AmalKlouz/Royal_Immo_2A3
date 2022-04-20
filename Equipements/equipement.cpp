@@ -53,6 +53,22 @@ QSqlQuery query;
 
 }
 
+bool Equipement::add_barcode(int eid,QString barcode)
+{
+bool test=false;
+QSqlQuery query;
+//    QString eid= QString::number(id);
+          query.prepare("UPDATE EQUIPEMENT SET BARCODE=:BARCODE where ID=:ID");
+          query.bindValue(":ID", eid);
+          query.bindValue(":BARCODE", barcode);
+
+        return query.exec();
+
+
+    return test;
+
+}
+
 QSqlQueryModel * Equipement::afficher()
 {
    QSqlQueryModel * model=new QSqlQueryModel();
@@ -62,6 +78,8 @@ QSqlQueryModel * Equipement::afficher()
          model->setHeaderData(2, Qt::Horizontal, QObject::tr("Marque"));
          model->setHeaderData(3, Qt::Horizontal, QObject::tr("Etat"));
          model->setHeaderData(4, Qt::Horizontal, QObject::tr("Date D'ajout"));
+         model->setHeaderData(5, Qt::Horizontal, QObject::tr("Code a Barre"));
+
 
   return model;
 }
@@ -92,12 +110,14 @@ QSqlQueryModel* Equipement::rechercher (const QString &aux)
 {
     QSqlQueryModel* model = new QSqlQueryModel();
 
-    model->setQuery("select * from EQUIPEMENT where ((ID||type||marque||etat) LIKE '%"+aux+"%')");
+    model->setQuery("select * from EQUIPEMENT where ((ID||type||marque||etat||BARCODE) LIKE '%"+aux+"%')");
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("Type"));
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("Marque"));
     model->setHeaderData(3, Qt::Horizontal, QObject::tr("Etat"));
     model->setHeaderData(4, Qt::Horizontal, QObject::tr("Date D'ajout"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("Code a Barre"));
+
 
 
     return model;

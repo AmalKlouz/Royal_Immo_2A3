@@ -75,6 +75,10 @@ MainWindow::MainWindow(QWidget *parent)
            //set page to 2
             ui->stackedWidget->setCurrentIndex(3);
         });
+     connect(ui->addBarcode, &QPushButton::clicked, this, [=]() {
+         //set page to 1
+         ui->stackedWidget->setCurrentIndex(1);
+     });
 
      QSqlQueryModel * modal=new QSqlQueryModel ();
      QSqlQuery* qry=new QSqlQuery ();
@@ -83,16 +87,16 @@ MainWindow::MainWindow(QWidget *parent)
      modal->setQuery(*qry);
      ui->comboBox->setModel(modal);
 
-//     int ret=A.connect_arduino (); // lancer la connexion à arduino
-//     switch (ret){
-//     case (0):qDebug() << "arduino is available and connected to : " << A.getarduino_port_name();
-//         break;
-//     case(1):qDebug()<< "arduino is available but not connected to :" <<A.getarduino_port_name ();
-//        break;
-//     case (-1):qDebug() << "arduino is not available";
-//     }
-//      QObject::connect(A.getserial (),SIGNAL (readyRead ()), this,SLOT(update_label())); // permet de lancer
-//      //le slot update_label suite à la reception du signal readyRead (reception des données)
+     int ret=A.connect_arduino (); // lancer la connexion à arduino
+     switch (ret){
+     case (0):qDebug() << "arduino is available and connected to : " << A.getarduino_port_name();
+         break;
+     case(1):qDebug()<< "arduino is available but not connected to :" <<A.getarduino_port_name ();
+        break;
+     case (-1):qDebug() << "arduino is not available";
+     }
+      QObject::connect(A.getserial (),SIGNAL (readyRead ()), this,SLOT(update_label())); // permet de lancer
+      //le slot update_label suite à la reception du signal readyRead (reception des données)
 
 //     data=A.read_from_arduino();
 //      ui->res_arduino->setText(data);
@@ -421,19 +425,6 @@ void MainWindow::on_pdf_btn_clicked()
 
 }
 
-void MainWindow::on_send_mail_clicked()
-{
-//    QString s_email=ui->sender_email->text();
-//    QString r_email=ui->reciever_email->text();
-//    QString subject=ui->subject->text();
-//    QString emessage=ui->message->toPlainText();
-
-//    Smtp *newMail  = new Smtp("marwen.touati@esprit.tn","marweng.touati@gmail.com"," Your Subject","My body text");
-//    delete newMail;
-
-}
-
-
 
 void MainWindow::on_QR_btn_clicked()
 {
@@ -503,7 +494,26 @@ void MainWindow::on_QR_btn_clicked()
                   qDebug() << "SQL Statement Error 3" << query3.lastError();
                   }
 
-        QString txt= "id:"+s_id+"/"+"MARQUE:"+s_marque+"/"+"TYPE:"+s_type+"/"+"ETAT:"+s_etat;
+                  QString s_barcode;
+                      QSqlQuery query4;
+                      query4.prepare("SELECT BARCODE FROM EQUIPEMENT where ID=?");
+                      query4.addBindValue(val);
+                      query4.exec();
+
+                      if(!query4.exec()) {
+                      qDebug() << "SQL Statement Error 2" << query4.lastError();
+                      }
+
+                      while (query4.next())
+                      {
+                        s_barcode = query4.value(0).toString();
+                        break;
+                      }
+                      if(!query4.next()) {
+                      qDebug() << "SQL Statement Error 3" << query4.lastError();
+                      }
+
+        QString txt= "id:"+s_id+"/"+"MARQUE:"+s_marque+"/"+"TYPE:"+s_type+"/"+"ETAT:"+s_etat+"/"+"BARCODE:"+s_barcode;
         QByteArray ba = txt.toLocal8Bit();
           const char *c_str2 = ba.data();
  const QrCode qr0 = QrCode::encodeText(c_str2, QrCode::Ecc::MEDIUM);
@@ -535,9 +545,43 @@ void MainWindow::on_Recherche_textChanged(const QString &arg1)
 void MainWindow::update_label()
 {
    data=A.read_from_arduino();
-   ui->res_arduino->setText(data);}
+
+if(!data.isNull()){
+    qDebug() << data;
+       d = QString::fromStdString(data.toStdString());
+QStringList dd = d.split(" ");
+QString ddd=dd[1]+dd[0];
+   ui->res_arduino->setText(ddd);}
+}
+
+void MainWindow::on_addBarcode_clicked()
+{
+
+    ui->tableView->setModel (Etmp.afficher());
+     int s_id=ui->eid->currentText().toInt();
+     QString barcode=ui->res_arduino->text();
+            bool test = E.add_barcode(s_id,barcode);
+            if (test)
+                  {
+
+                                   QMessageBox::information(nullptr, QObject::tr("OK"),
+                                               QObject::tr("Ajout du barcode effectué.\n"
+                                                           "Click Cancel to exit."), QMessageBox::Cancel);
+                   }
+                  else{
+                  QMessageBox::critical(nullptr,QObject::tr("ERROR404"),
+                                          QObject::tr("echec d'Ajout du barcode"),
+                                          QMessageBox::Cancel);}
+            ui->tableView->setModel(Etmp.afficher());
+
+}
 
 void MainWindow::on_arduino_clicked()
 {
-//    update_label();
+    QSqlQueryModel * modal=new QSqlQueryModel ();
+    QSqlQuery* qry=new QSqlQuery ();
+    qry->prepare ("select ID from EQUIPEMENT ");
+    qry->exec ();
+    modal->setQuery(*qry);
+    ui->eid->setModel(modal);
 }
