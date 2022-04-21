@@ -549,9 +549,17 @@ void MainWindow::update_label()
 if(!data.isNull()){
     qDebug() << data;
        d = QString::fromStdString(data.toStdString());
-QStringList dd = d.split(" ");
-QString ddd=dd[1]+dd[0];
-   ui->res_arduino->setText(ddd);}
+        ui->res_arduino->setText(d);
+//QStringList dd = d.split(" ");
+//if(dd.length()==0){
+//    ui->res_arduino->setText(dd[0]);
+
+//}
+//else{
+//    QString ddd=dd[1]+dd[0];
+//       ui->res_arduino->setText(ddd);
+//}
+}
 }
 
 void MainWindow::on_addBarcode_clicked()
