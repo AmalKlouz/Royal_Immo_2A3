@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Menu</class>
+ <widget class="QDialog" name="Menu">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>698</width>
+    <height>442</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 255, 255);</string>
+  </property>
+  <widget class="QWidget" name="horizontalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>150</y>
+     <width>631</width>
+     <height>181</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QPushButton" name="bien_m">
+      <property name="styleSheet">
+       <string notr="true">Ezzaouia Mohamed Amine
+QPushButton {
+    color: rgb(255, 255, 255);
+  background-color: #FF17365D;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 10px;
+    border-color: beige;
+    min-width: 10em;
+    padding: 6px;
+}
+QPushButton:hover {
+color: #fff;
+    background-color: rgb(43, 163, 255);
+    border-style: inset;
+}
+QPushButton:pressed {
+    background-color: rgb(43, 163, 255);
+    border-style: inset;
+}</string>
+      </property>
+      <property name="text">
+       <string>bien</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="styleSheet">
+       <string notr="true">Ezzaouia Mohamed Amine
+QPushButton {
+    color: rgb(255, 255, 255);
+  background-color: #FF17365D;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 10px;
+    border-color: beige;
+    min-width: 10em;
+    padding: 6px;
+}
+QPushButton:hover {
+color: #fff;
+    background-color: rgb(43, 163, 255);
+    border-style: inset;
+}
+QPushButton:pressed {
+    background-color: rgb(43, 163, 255);
+    border-style: inset;
+}</string>
+      </property>
+      <property name="text">
+       <string>Clients</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="rec">
+      <property name="styleSheet">
+       <string notr="true">Ezzaouia Mohamed Amine
+QPushButton {
+    color: rgb(255, 255, 255);
+  background-color: #FF17365D;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 10px;
+    border-color: beige;
+    min-width: 10em;
+    padding: 6px;
+}
+QPushButton:hover {
+color: #fff;
+    background-color: rgb(43, 163, 255);
+    border-style: inset;
+}
+QPushButton:pressed {
+    background-color: rgb(43, 163, 255);
+    border-style: inset;
+}</string>
+      </property>
+      <property name="text">
+       <string>Réclamation</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton">
+      <property name="styleSheet">
+       <string notr="true">Ezzaouia Mohamed Amine
+QPushButton {
+    color: rgb(255, 255, 255);
+  background-color: #FF17365D;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 10px;
+    border-color: beige;
+    min-width: 10em;
+    padding: 6px;
+}
+QPushButton:hover {
+color: #fff;
+    background-color: rgb(43, 163, 255);
+    border-style: inset;
+}
+QPushButton:pressed {
+    background-color: rgb(43, 163, 255);
+    border-style: inset;
+}</string>
+      </property>
+      <property name="text">
+       <string>Employes</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="equipement">
+      <property name="text">
+       <string>Equipements</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>40</y>
+     <width>591</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 24pt &quot;Palatino Linotype&quot;;
+color: rgb(0, 0, 127);</string>
+   </property>
+   <property name="text">
+    <string>WELCOME TO ROYAL IMMO</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
